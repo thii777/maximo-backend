@@ -3,11 +3,11 @@ const connection = require('../../database/connection')
 class SessionController {
     async create(req, res) {
         try {
-            const { id } = req.body
+            const { email, senha } = req.body
             
             const user = await connection('users')
-            .where('id', id)
-            .select('name')
+            .where({'email': email, 'senha': senha})
+            .select('email','name', "id")
             .first() 
 
             if(!user){

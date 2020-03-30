@@ -7,14 +7,18 @@ class MyTasksController {
             const { page = 1 } = req.query
 
             const tasks = await connection('tasks')
-                .limit(2)
-                .offset((page - 1) * 2)
+                .limit(6)
+                .offset((page - 1) * 6)
                 .where('user_id', user_id)
                 .select('*')
 
-            if (tasks.length == [0]) {
-                return res.json({ message: "You have no tasks" })
-            }
+            // if(connection.id !== user_id){
+            //     return res.status(401).json({message: "Forbbiden"})
+            // }
+
+            // if (tasks.length == [0]) {
+            //     return res.json({ message: "You have no tasks" })
+            // }
 
             return res.json(tasks)
         } catch (e) {

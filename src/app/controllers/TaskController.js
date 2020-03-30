@@ -31,8 +31,8 @@ class TaskController {
 
             const tasks = await connection('tasks')
                 .join('users', 'user_id', '=', 'tasks.user_id')
-                .limit(5)
-                .offset((page - 1) * 5)
+                .limit(6)
+                .offset((page - 1) * 6)
                 .select(['tasks.id', 'users.name', 'tasks.title', 'tasks.description'])
 
             return res.json(tasks)
