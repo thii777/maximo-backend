@@ -5,13 +5,14 @@ class TaskController {
         try {
             const { title, description } = req.body
             const user_id = req.headers.authorization
-
+            
             const [id] = await connection('tasks').insert({
                 title,
                 description,
                 user_id,
             })
-
+            
+            // console.log({id})
             return res.json({ id })
 
         } catch (e) {
@@ -30,7 +31,7 @@ class TaskController {
             res.header('x-total-count', count['count(*)'])
 
             const tasks = await connection('tasks')
-                .join('users', 'user_id', '=', 'tasks.user_id')
+                .join('users', 'users.id', '=', 'tasks.user_id')
                 .limit(6)
                 .offset((page - 1) * 6)
                 .select(['tasks.id', 'users.name', 'tasks.title', 'tasks.description'])
