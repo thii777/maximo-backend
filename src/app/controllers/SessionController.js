@@ -10,10 +10,9 @@ class SessionController {
             .select('email','name', "id")
             .first() 
 
-            // if(!user){
-            //     return res.status(401).json({message: 'User not exist'})
-            // }
-
+            if(!user){
+                return res.status(401).json({message: 'User not exist'})
+            }
             return res.json(user)
 
         } catch (e) {
