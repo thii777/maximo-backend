@@ -1,5 +1,3 @@
-const crypto = require('crypto')
-
 const connection = require('../../database/connection')
 
 class UserController {
@@ -11,15 +9,12 @@ class UserController {
                 senha
             } = req.body
 
-            const id = crypto.randomBytes(4).toString('HEX')
-
-            await connection('users').insert({
-                id,
+            const user = await connection('users').insert({
                 name,
                 email,
                 senha
             })
-            return res.json({ id })
+            return res.json(user)
 
         } catch (e) {
             console.error({
