@@ -12,14 +12,6 @@ class MyTasksController {
                 .where('user_id', user_id)
                 .select('*')
 
-            // if(connection.id !== user_id){
-            //     return res.status(401).json({message: "Forbbiden"})
-            // }
-
-            // if (tasks.length == [0]) {
-            //     return res.json({ message: "You have no tasks" })
-            // }
-
             return res.json(tasks)
         } catch (e) {
             console.error({

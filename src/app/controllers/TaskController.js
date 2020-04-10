@@ -50,6 +50,7 @@ class TaskController {
         try {
             const { id } = req.params
             const { title, description } = req.body
+            
             const user_id = req.headers.authorization
 
             const task = await connection('tasks')

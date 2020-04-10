@@ -4,6 +4,7 @@
 # Enviroment Variables
 .env
 knexfile.js
+db.sqlite
 
 # Logs
 logs
