@@ -13,7 +13,6 @@ class SessionController {
             if(!user){
                 return res.status(401).json({message: 'User not exist'})
             }
-
             return res.json(user)
 
         } catch (e) {
