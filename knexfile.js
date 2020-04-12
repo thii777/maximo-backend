@@ -1,11 +1,4 @@
 require('dotenv').config()
-// const { Client } = require('pg')
-
-// const connectionString = process.env.DATABASE_URL
-
-// const database_url = new Client({
-//   connectionString: connectionString
-// })
 
 module.exports = {
   production: {
