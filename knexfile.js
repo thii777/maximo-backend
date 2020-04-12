@@ -6,7 +6,6 @@ module.exports = {
     connection: {
       host: process.env.DATABASE_HOST,
       database: process.env.DATABASE_NAME,
-      port: process.env.DATABASE_PORT,
       user: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD
     },
@@ -34,7 +33,7 @@ module.exports = {
     },
     useNullAsDefault: true,
     pool: {
-      min: 2,
+      min: 5,
       max: 10
     },
   },
