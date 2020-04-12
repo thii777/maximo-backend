@@ -6,14 +6,13 @@ class TaskController {
             const { title, description } = req.body
             const user_id = req.headers.authorization
             
-            const [id] = await connection('tasks').insert({
+            const id = await connection('tasks').insert({
                 title,
                 description,
                 user_id,
             })
             
-            // console.log({id})
-            return res.json({ id })
+            return res.json({id})
 
         } catch (e) {
             console.error({

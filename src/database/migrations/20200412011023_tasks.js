@@ -1,5 +1,3 @@
-
-
 exports.up = function(knex) {
     return knex.schema.createTable('tasks', function (table) {
         table.increments();
@@ -8,7 +6,7 @@ exports.up = function(knex) {
         table.string('description').notNullable();
         table.timestamp('created_at').defaultTo(knex.fn.now());
 
-        table.string('user_id').notNullable();
+        table.integer('user_id').notNullable();
 
         table.foreign('user_id').references('id').inTable('users')   
     })
