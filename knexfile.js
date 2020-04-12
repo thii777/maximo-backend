@@ -9,16 +9,8 @@ require('dotenv').config()
 
 module.exports = {
   production: {
-    client: 'postgres',
+    client: 'pg',
     connection: process.env.DATABASE_URL,
-    // {
-    //   database_url: database_url,
-    //   host: process.env.DATABASE_HOST,
-    //   database: process.env.DATABASE_NAME,
-    //   port: process.env.DATABASE_PORT,
-    //   user: process.env.DATABASE_USER,
-    //   password: process.env.DATABASE_PASSWORD
-    // },
     migrations: {
       directory: './src/database/migrations'
     },
