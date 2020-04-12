@@ -10,7 +10,8 @@ class App{
     }
      middlewares(){
         this.server.use(express.json())
-        this.server.use(cors({ origin: 'https://somosomaximo.netlify.com'}))
+        this.server.use(cors())
+        // this.server.use(cors({ origin: 'https://somosomaximo.netlify.com'}))
     }
     routes(){
         this.server.use(routes)
