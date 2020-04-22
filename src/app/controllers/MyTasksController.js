@@ -1,7 +1,7 @@
 const connection = require('../../database/connection')
 
 class MyTasksController {
-    async index(req, res) {
+    async getById(req, res) {
         try {
             const user_id = req.headers.authorization
             const { page = 1 } = req.query

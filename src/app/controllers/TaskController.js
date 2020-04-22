@@ -17,12 +17,12 @@ class TaskController {
         } catch (e) {
             console.error({
                 message: e.message,
-                stack: "Ops, algo deu errado, segundo o " + e.stack
+                stack: `Ops, algo deu errado ${e.stack}`
             })
         }
     }
 
-    async show(req, res) {
+    async getAll(req, res) {
         try {
             const { page = 1 } = req.query
 

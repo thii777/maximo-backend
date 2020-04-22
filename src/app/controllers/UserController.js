@@ -2,6 +2,7 @@ const connection = require('../../database/connection')
 
 class UserController {
     async create(req, res) {
+
         try {
             const {
                 name,
@@ -9,13 +10,23 @@ class UserController {
                 senha
             } = req.body
 
-            const user = await connection('users').insert({
-                name,
-                email,
-                senha
-            })
-            return res.json(user)
+            await connection.select("users")
+                .from("users")
+                .andWhere("email", email)
+                .then(e => {
+                    if (e.length === 0) {
+                        return connection('users')
+                            .insert([{
+                                name,
+                                email,
+                                senha
+                            }])
+                    }
+                    return res.status(400).json({ message: 'User already exist' });
+                });
 
+            return res.json({ message: "Create success" })
+            
         } catch (e) {
             console.error({
                 message: e.message,
@@ -24,7 +35,7 @@ class UserController {
         }
     }
 
-    async show(req, res) {
+    async getAll(req, res) {
         try {
             const users = await connection('users').select('*')
             return res.json(users)
