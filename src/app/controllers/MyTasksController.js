@@ -13,6 +13,7 @@ class MyTasksController {
                 .select('*')
 
             return res.json(tasks)
+
         } catch (e) {
             console.error({
                 message: e.message,

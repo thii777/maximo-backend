@@ -33,7 +33,7 @@ class TaskController {
                 .join('users', 'users.id', '=', 'tasks.user_id')
                 .limit(6)
                 .offset((page - 1) * 6)
-                .select(['tasks.id', 'users.name', 'tasks.title', 'tasks.description'])
+                .select(['tasks.id', 'users.name', 'tasks.title', 'tasks.description', 'tasks.user_id'])
 
             return res.json(tasks)
 

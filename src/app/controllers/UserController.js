@@ -1,7 +1,9 @@
 const connection = require('../../database/connection')
+const bcrypt = require('bcrypt')
+const saltRounds = 10;
 
 class UserController {
-    async create(req, res) {
+    create(req, res) {
 
         try {
             const {
@@ -10,23 +12,27 @@ class UserController {
                 senha
             } = req.body
 
-            await connection.select("users")
-                .from("users")
-                .andWhere("email", email)
-                .then(e => {
-                    if (e.length === 0) {
-                        return connection('users')
-                            .insert([{
-                                name,
-                                email,
-                                senha
-                            }])
-                    }
-                    return res.status(400).json({ message: 'User already exist' });
-                });
 
-            return res.json({ message: "Create success" })
-            
+            bcrypt.hash(String(senha), saltRounds).then((hash) => {
+
+                connection.select("users")
+                    .from("users")
+                    .andWhere("email", email)
+                    .then(e => {
+                        if (e.length === 0) {
+                            return connection('users')
+                                .insert([{
+                                    name,
+                                    email,
+                                    senha: hash
+                                }])
+                        }
+                        return res.status(400).json({ message: 'User already exist' });
+                    });
+                return res.json({ message: "Create success" })
+            });
+
+
         } catch (e) {
             console.error({
                 message: e.message,
